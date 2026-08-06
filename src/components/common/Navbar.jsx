@@ -23,7 +23,7 @@ export default function Navbar({ onMenuClick }) {
 
       <div className="navbar-user">
         <div className="navbar-user-info">
-          <span className="navbar-user-name">{user?.name || "User"}</span>
+          <span className="navbar-user-name">{user?.email || "User"}</span>
           <span className="navbar-user-role">{user?.role || "member"}</span>
         </div>
         <div className="navbar-avatar">

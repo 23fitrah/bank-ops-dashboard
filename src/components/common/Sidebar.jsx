@@ -1,21 +1,30 @@
 import { NavLink ,useLocation} from "react-router-dom";
 import { useState } from "react"
-import { LayoutDashboard, Package, X, ChevronDown, User, MonitorDot, UserRoundSearch, List, Banknote } from "lucide-react";
+import { LayoutDashboard, Package, X, ChevronDown, User, MonitorDot, UserRoundSearch, List, Banknote, Settings, Landmark, BookSearch, NotebookText } from "lucide-react";
 import logo from "../../assets/img/logo-dashboard.png";
 
 const menuItems = [
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard ,},
   { to: "/products", label: "Transfer Uang", icon: Banknote },
   {
-    label: "Account",
+    label: "Rekening",
     icon: User,
     children: [
-      { to: "/products", label: " Inquiry Account" , icon: UserRoundSearch},
-      { to: "/account", label: " List Account", icon:List},
+      { to: "/products", label: " Inquiry Rekening" , icon: UserRoundSearch},
+      { to: "/account", label: " List Rekening", icon:List},
     ],
   },
-    { to: "/", label: "Log Monitoring", icon: MonitorDot },
-
+  {
+    label: "Nostro",
+    icon: Landmark,
+    children:[
+      { to: "/", label:" Inquiry Nostro", icon:BookSearch},
+      { to: "/", label:" List Nostro", icon:List},
+    ]
+  },
+  { to: "/", label: "Report", icon: NotebookText},
+  { to: "/", label: "Log Monitoring", icon: MonitorDot },
+  { to: "/", label: "Pengaturan Parameter", icon :Settings},
 ];
 
 export default function Sidebar({ open, onClose }) {
@@ -37,7 +46,7 @@ export default function Sidebar({ open, onClose }) {
         <div className="sidebar-header">
           <div className="sidebar-logo">
              <img src={logo} alt="Logo" width={30} height={30}/>
-            <span className="sidebar-logo-text">AdminPanel</span>
+            <span className="sidebar-logo-text">BantenOps</span>
           </div>
           <button className="sidebar-close" onClick={onClose} aria-label="Tutup menu">
             <X size={18} />

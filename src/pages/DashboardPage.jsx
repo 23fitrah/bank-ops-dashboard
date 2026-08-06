@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Package, Layers, AlertTriangle } from "lucide-react";
+import { Package, Layers, AlertTriangle, BanknoteX, BanknoteArrowUp, UserStar, Landmark} from "lucide-react";
 import { getProducts } from "../api/accountApi";
 import { useAuth } from "../hooks/useAuth";
 import Loading from "../components/common/Loading";
@@ -14,10 +14,10 @@ export default function DashboardPage() {
       .then((res) => setProducts(res.data.payload))
       .finally(() => setLoading(false));
   }, []);
-
-  const totalStock = products.reduce((sum, p) => sum + p.Stock, 0);
-  const lowStock = products.filter((p) => p.Stock <= 5).length;
-  const categories = new Set(products.map((p) => p.Category).filter(Boolean)).size;
+  const totalSuccess="92.353.032"
+  const totalFailed = "12"//products.reduce((sum, p) => sum + p.Stock, 0);
+  const totalAcct = "450.000"//products.filter((p) => p.Stock <= 5).length;
+  const totalNostro = "35"//new Set(products.map((p) => p.Category).filter(Boolean)).size;
 
   if (loading) return <Loading label="Memuat ringkasan..." />;
 
@@ -25,47 +25,47 @@ export default function DashboardPage() {
     <div className="dashboard-page">
       <div className="dashboard-welcome">
         <h2>Halo, {user?.name || "Admin"} 👋</h2>
-        <p>Berikut ringkasan data produk kamu hari ini.</p>
+        <p>Berikut ringkasan kamu hari ini.</p>
       </div>
 
       <div className="stat-grid">
         <div className="card stat-card">
           <div className="stat-icon stat-icon-accent">
-            <Package size={20} />
+            <BanknoteArrowUp size={20} />
           </div>
           <div>
-            <p className="stat-label">Total Produk</p>
-            <h3>{products.length}</h3>
+            <p className="stat-label">Total Transfer Sukses</p>
+            <h3>{totalSuccess}</h3>
           </div>
         </div>
 
         <div className="card stat-card">
-          <div className="stat-icon stat-icon-purple">
-            <Layers size={20} />
+          <div className="stat-icon stat-icon-danger">
+            <BanknoteX size={20} />
           </div>
           <div>
-            <p className="stat-label">Total Stok</p>
-            <h3>{totalStock}</h3>
+            <p className="stat-label">Total Transfer Gagal</p>
+            <h3>{totalFailed}</h3>
           </div>
         </div>
 
         <div className="card stat-card">
           <div className="stat-icon stat-icon-warning">
-            <AlertTriangle size={20} />
+            <UserStar size={20} />
           </div>
           <div>
-            <p className="stat-label">Stok Menipis</p>
-            <h3>{lowStock}</h3>
+            <p className="stat-label">Total Rekening Tabungan</p>
+            <h3>{totalAcct}</h3>
           </div>
         </div>
 
         <div className="card stat-card">
           <div className="stat-icon stat-icon-accent">
-            <Layers size={20} />
+            <Landmark size={20} />
           </div>
           <div>
-            <p className="stat-label">Kategori</p>
-            <h3>{categories}</h3>
+            <p className="stat-label">Total Rekening Nostro</p>
+            <h3>{totalNostro}</h3>
           </div>
         </div>
       </div>
@@ -109,6 +109,10 @@ export default function DashboardPage() {
         .stat-icon-warning {
           background: #fef3e0;
           color: var(--color-warning);
+        }
+        .stat-icon-danger {
+          background: #fee0e6;
+          color: var(--color-danger);
         }
         .stat-icon-purple {
           background: #ece9fe;

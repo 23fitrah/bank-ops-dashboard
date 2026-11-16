@@ -2,7 +2,7 @@ import axios from "axios";
 import { getToken, clearSession } from "../utils/storage";
 
 const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "http://localhost:5000/api",
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:6969/api",
 });
 
 // Selipkan token JWT ke setiap request yang butuh login
